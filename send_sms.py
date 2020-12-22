@@ -21,6 +21,6 @@ message = client.messages \
                 .create(
                      body="Schedule for " + formatted_date + "\n\n" + message,
                      from_='+12314327402',
-                     to='+15715518265'
+                     to=os.environ['MY_PHONE_NUMBER']
                 )
 print(message.sid)
