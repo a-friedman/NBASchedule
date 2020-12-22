@@ -1,11 +1,10 @@
-from lxml.cssselect import CSSSelector
 import lxml.html
 import requests
 from collections import Counter
 import pickle
 
 
-# returns dict of dates to lists of games
+# returns dict of dates to lists of games on that date
 def create_games(month):
     games = requests.get('https://www.basketball-reference.com/leagues/NBA_2021_games-{}.html'.format(month))
     tree = lxml.html.fromstring(games.text)
@@ -56,15 +55,11 @@ if __name__ == "__main__":
     jan_games = create_games("january")
     feb_games = create_games("february")
     mar_games = create_games("march")
-    f = open("dec_schedule.pkl", "wb")
-    pickle.dump(dec_games, f)
-    f.close()
-    f = open("jan_schedule.pkl", "wb")
-    pickle.dump(jan_games, f)
-    f.close()
-    f = open("feb_schedule.pkl", "wb")
-    pickle.dump(feb_games, f)
-    f.close()
-    f = open("mar_schedule.pkl", "wb")
-    pickle.dump(mar_games, f)
+    # merge all months schedules into one dict
+    combined_schedule = dec_games
+    combined_schedule.update(jan_games)
+    combined_schedule.update(feb_games)
+    combined_schedule.update(mar_games)
+    f = open("schedule.pkl", "wb")
+    pickle.dump(combined_schedule, f)
     f.close()
