@@ -4,7 +4,7 @@ import pickle
 import os
 
 today = date.today()
-formatted_date = today.strftime("%a, %b %d, %Y")
+formatted_date = today.strftime("%a, %b %#d, %Y")
 
 account_sid = os.environ['TWILIO_ACCOUNT_SID']
 auth_token = os.environ['TWILIO_AUTH_TOKEN']
