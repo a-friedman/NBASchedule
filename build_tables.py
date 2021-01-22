@@ -20,7 +20,7 @@ def create_games(month):
     teams_list = []
     count = 0
     teams_string = ""
-    for teams in tree.cssselect('td a'):
+    for teams in tree.cssselect('td.left a'):
         if count == 0:
             teams_string += teams.text_content()
             count += 1
