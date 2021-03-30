@@ -55,11 +55,15 @@ if __name__ == "__main__":
     jan_games = create_games("january")
     feb_games = create_games("february")
     mar_games = create_games("march")
+    apr_games = create_games("april")
+    may_games = create_games("may")
     # merge all months schedules into one dict
     combined_schedule = dec_games
     combined_schedule.update(jan_games)
     combined_schedule.update(feb_games)
     combined_schedule.update(mar_games)
+    combined_schedule.update(apr_games)
+    combined_schedule.update(may_games)
     f = open("schedule.pkl", "wb")
     pickle.dump(combined_schedule, f)
     f.close()
